@@ -15,12 +15,12 @@ typedef struct Cascade_hte // Partie descendante de la liste chainée
     struct Cascade_hte *next;
 } Cascade_hte;
 
-typedef struct correspondance // Table de lien num_document <-> Nom document
+typedef struct Correspondance // Table de lien num_document <-> Nom document
 {
     int id;
     char nom[300];
     struct correspondance *next;
-} correspondance;
+} Correspondance;
 
 void ajouter_doc(Cascade_brche *c, int doc);
 void ajout_mot(Cascade_hte **cascade, char *mot, int doc);

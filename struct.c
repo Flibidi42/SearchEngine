@@ -68,3 +68,23 @@ void afficher(Cascade_hte *c){
         printf("\n");
     }
 }
+
+void ajout_correspondance(Correspondance **c, int id, char *nom){ // ajout d'un doc
+    if(c==NULL)
+        return;
+    if(*c==NULL){ // cas ou la table est vide
+        *c = malloc(sizeof(*Correspondance));
+        (*c)->id = id;
+        strcpy((*c)->nom, nom);
+        (*c)->next = NULL;
+        return;
+    }
+    Correspodance *alias = *c;
+    while(alias->next !=NULL){ // parcours des docs jusqu'au dernier
+        alias = alias->next;
+    }
+    alias->next = malloc(sizeof(*Correspondance));
+    alias->id = id;
+    strcpy(alias->nom, nom);
+    alias->next = NULL;
+}
