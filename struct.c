@@ -14,7 +14,6 @@ void ajout_mot(Cascade_hte **cascade, char *mot, int doc){
         (*cascade)->branche->next = NULL;
         return;
     }
-    int trouve = 0;
     Cascade_hte *c1 = *cascade;
     Cascade_hte *tempo = c1;
     Cascade_brche *c2 = NULL;
@@ -58,10 +57,10 @@ void afficher(Cascade_hte *c){
     if(c1 == NULL)
         return;
     Cascade_brche *c2;
-    while(c1 != NULL){
+    while(c1 != NULL){ // On parcourt les mots
         c2 = c1->branche;
         printf("Mot %s : - ", c1->mot);
-        while(c2 != NULL){
+        while(c2 != NULL){ // On parcourt les docs
             printf("Doc : %d -> %d fois - ", c2->doc, c2->nombre);
             c2 = c2->next;
         }
