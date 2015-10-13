@@ -101,3 +101,8 @@ void ajout_correspondance(Correspondance **c, int id, char *nom)  // ajout d'un 
     strcpy(alias->next->nom, nom);
     alias->next->next = NULL;
 }
+
+void maj_classement(Score *classement, Cascade_brche *result){
+
+
+}

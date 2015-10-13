@@ -20,6 +20,7 @@ typedef struct Correspondance // Table de lien num_document <-> Nom document
 {
     int id;
     char nom[100];
+    unsigned int taille;
     struct Correspondance *next;
 } Correspondance;
 

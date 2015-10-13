@@ -9,7 +9,6 @@ void Recherche(Correspondance *c, Cascade_hte *index)
     char recherche_brute[(NB_MOT*MAX_MOT + NB_MOT - 1)];
     char *c = NULL;
 
-
     //execution
     if (fgets(recherche_brute, NB_MOT*MAX_MOT + NB_MOT - 1, stdin) != NULL)
     {
@@ -51,9 +50,10 @@ Query* decoupage(char recherche_brute[]){
     return rech_dec;
 }
 
-void classement(Correspondance *c, Query *q){
+void classement(Correspondance *c, Query *q, Cascade_hte *i){
     Query *rech = q;
     Correspondance *docs = c;
+    Cascade_hte *index = i;
     Score *classement;
     int taille = 0;
 
@@ -64,5 +64,14 @@ void classement(Correspondance *c, Query *q){
 
     classement = malloc(sizeof(Score) * taille); // On crée le tableau des resultats
 
-
+    while(rech != NULL){
+        index = i;
+        while(index != NULL){
+            if(!strcmp(rech->mot, index->mot)
+               maj_classement(classement, index->branche);
+            index = index->next;
+        }
+        rech = rech->next;
+    }
 }
+
