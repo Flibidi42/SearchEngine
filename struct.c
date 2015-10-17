@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "struct.h"
+#include "search.h"
 
 void ajout_mot(Cascade_hte **cascade, char *mot, int doc)
 {
@@ -100,9 +101,4 @@ void ajout_correspondance(Correspondance **c, int id, char *nom)  // ajout d'un 
     alias->next->id = id;
     strcpy(alias->next->nom, nom);
     alias->next->next = NULL;
-}
-
-void maj_classement(Score *classement, Cascade_brche *result){
-
-
 }

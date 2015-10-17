@@ -10,15 +10,9 @@ typedef struct Query{
 
 }Query;
 
-typedef struct Score{
+void Recherche(Correspondance *c, Cascade_hte *i); // Fonction de recherche principale
+Query* decoupage(char recherche_brute[]); // Découpage de la recherche en "bag of words"
 
-    int id;
-    int score;
-}Score;
 
-void Recherche(Correspondance *c, Cascade_hte *i);
-Query* decoupage(char recherche_brute[]);
-void classement(Correspondance *c, Query *q, Cascade_hte *index);
-void maj_classement(Score *classement, Cascade_brche *result);
 
 #endif // USER_H_INCLUDED

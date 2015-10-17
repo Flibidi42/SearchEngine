@@ -5,7 +5,10 @@
 
 ##Module Index
 * Developpement indexation doc
+* Developpement indexation mot
 
 ##Module user
 * Dev du formatage de la requete
-* Debut du classement
+
+##Module search
+* Classement en cours : Debut du clacul de la formule BM25

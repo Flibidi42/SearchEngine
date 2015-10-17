@@ -69,6 +69,7 @@ Cascade_hte* indexation(Correspondance* table_co)
                 ajout_mot(&index, mot, alias_doc->id);
                 i = 0;
             }
+            alias_doc->taille += 1.;
         }
         if(!mot_envoye)
         {
