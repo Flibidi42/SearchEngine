@@ -23,7 +23,6 @@ void Recherche(Correspondance *c, Cascade_hte *index)
             recherche_brute[REQ_MAX-1] = '\0';
         }
         Query* recherche_decoupe = decoupage(recherche_brute);
-        // A completer
         classement(c, recherche_decoupe, index);
     }
     else
@@ -57,3 +56,10 @@ Query* decoupage(char recherche_brute[]){
     return rech_dec;
 }
 
+void Affichage_resultats(double* classement, int taille){
+
+    int i = 0;
+    for(i = 0; i < taille; i++){
+        printf("Doc %d\n", classement[i])
+    }
+}

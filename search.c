@@ -6,12 +6,12 @@
 #include "struct.h"
 #include "search.h"
 
-void classement(Correspondance *c, Query *q, Cascade_hte *i){
+int* classement(Correspondance *c, Query *q, Cascade_hte *i){
     Query *rech = q;
     Correspondance *docs = c;
     Cascade_hte *index = i;
     double *classement;
-    int taille = 0;
+    int taille = 0, i, j;
     double moyenne_t = 0;
 
     while(docs != NULL){ // calcul du nombre de docs
@@ -35,6 +35,7 @@ void classement(Correspondance *c, Query *q, Cascade_hte *i){
         }
         rech = rech->next;
     }
+
 }
 
 double IDF(int taille, Cascade_brche *result){ // Calcul de l'IDF (penalisation mots communs)
