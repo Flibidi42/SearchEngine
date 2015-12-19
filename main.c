@@ -8,9 +8,12 @@
 int main()
 {
     /*Code de test*/
+
     Correspondance *c = etablir_liste_doc();
     Cascade_hte *index = indexation(c);
     //afficher_index(index);
     Recherche(c, index);
+
+
     return 0;
 }

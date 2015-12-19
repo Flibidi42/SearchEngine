@@ -6,29 +6,29 @@
 #include "struct.h"
 #include "search.h"
 
-int* classement(Correspondance *c, Query *q, Cascade_hte *i){
+int* classement(Correspondance *c, Query *q, Cascade_hte *i, int *taille){
     Query *rech = q;
     Correspondance *docs = c;
     Cascade_hte *index = i;
     double *classement;
-    int taille = 0, i, j;
+    int j, k;
     double moyenne_t = 0;
 
     while(docs != NULL){ // calcul du nombre de docs
-        taille ++;
+        *taille ++;
         moyenne_t += docs->taille;
         docs = docs->next;
     }
 
-    moyenne_t /= ((double) taille);
+    moyenne_t /= ((double) *taille);
 
-    classement = malloc(sizeof(double) * taille); // On crée la table des resultats
+    classement = malloc(sizeof(double) * (*taille)); // On crée la table des resultats
 
     while(rech != NULL){
         index = i;
         while(index != NULL){
             if(!strcmp(rech->mot, index->mot)){
-               maj_classement(classement, index->branche, taille, c, moyenne_t);
+               maj_classement(classement, index->branche, *taille, c, moyenne_t);
                break;
             }
             index = index->next;
@@ -37,21 +37,25 @@ int* classement(Correspondance *c, Query *q, Cascade_hte *i){
     }
 
 
-    int *classement_final = malloc(sizeof(int) * taille); // on etablit la liste des indices généraux classés
-    int i = 0, j = 0, decalage = 0, valeur_decal = 0, tempo;
-    for(i = 0; i<taille; i++){
-        for(j = 0; j<taille; j++){
+    int *classement_final = malloc(sizeof(int) * (*taille)); // on etablit la liste des indices généraux classés
+    int decalage = 0, valeur_decal = 0, tempo;
+    for (k = 0; k<*taille; k++){
+        classement_final[k] = 0;
+    }
+
+    for(k = 0; k<*taille; k++){
+        for(j = 0; j<*taille; j++){
             if(decalage){
                 tempo = classement_final[j];
                 classement_final[j] = valeur_decal;
                 valeur_decal = tempo;
             }
             else{
-                if(classement[classement_final[j]]>classement[i])
+                if(classement[classement_final[j]]>classement[k])
                     continue;
                 else
                     valeur_decal = classement_final[j];
-                    classement_final[j] = i;
+                    classement_final[j] = k;
                     decalage = 1;
             }
         }

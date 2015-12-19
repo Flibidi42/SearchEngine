@@ -13,7 +13,7 @@ typedef struct Query{
 
 void Recherche(Correspondance *c, Cascade_hte *i); // Fonction de recherche principale
 Query* decoupage(char recherche_brute[]); // Découpage de la recherche en "bag of words"
-void Affichage_resultats(double* classement, int taille);
+void Affichage_resultats(int* classement, int taille, Correspondance *c);
 
 
 #endif // USER_H_INCLUDED

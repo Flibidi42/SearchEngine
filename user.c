@@ -10,6 +10,9 @@ void Recherche(Correspondance *c, Cascade_hte *index)
     // variables
     char recherche_brute[REQ_MAX];
     char *ca = NULL, char_vidage;
+    int taille = 0;
+
+
 
     //execution
     if (fgets(recherche_brute, REQ_MAX-1, stdin) != NULL)
@@ -23,7 +26,9 @@ void Recherche(Correspondance *c, Cascade_hte *index)
             recherche_brute[REQ_MAX-1] = '\0';
         }
         Query* recherche_decoupe = decoupage(recherche_brute);
-        classement(c, recherche_decoupe, index);
+        int *tableau_resultats = NULL;
+        tableau_resultats = classement(c, recherche_decoupe, index, &taille);
+        Affichage_resultats(tableau_resultats, taille, c);
     }
     else
     {
@@ -56,10 +61,19 @@ Query* decoupage(char recherche_brute[]){
     return rech_dec;
 }
 
-void Affichage_resultats(double* classement, int taille){
 
+void Affichage_resultats(int* classement, int taille, Correspondance *c){
+
+    Correspondance *docs = c;
     int i = 0;
     for(i = 0; i < taille; i++){
-        printf("Doc %d\n", classement[i])
+        while(docs != NULL && docs->id != i)
+            docs = docs->next;
+        if(docs == NULL){
+            printf("Erreur");
+            return;
+        }
+        printf("Doc %d : %s\n", classement[i], docs->nom);
+        docs = c;
     }
 }
