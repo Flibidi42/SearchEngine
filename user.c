@@ -11,8 +11,12 @@ void Recherche(Correspondance *c, Cascade_hte *index)
     char recherche_brute[REQ_MAX];
     char *ca = NULL, char_vidage;
     int taille = 0;
+    Correspondance *docs = c;
 
-
+    while(docs != NULL){ // calcul du nombre de docs
+        *taille ++;
+        docs = docs->next;
+    }
 
     //execution
     if (fgets(recherche_brute, REQ_MAX-1, stdin) != NULL)
