@@ -8,18 +8,23 @@
 void Recherche(Correspondance *c, Cascade_hte *index)
 {
     // variables
-    char recherche_brute[(NB_MOT*MAX_MOT + NB_MOT - 1)];
+    char recherche_brute[REQ_MAX];
     char *ca = NULL, char_vidage;
 
     //execution
-    if (fgets(recherche_brute, NB_MOT*MAX_MOT + NB_MOT - 1, stdin) != NULL)
+    if (fgets(recherche_brute, REQ_MAX-1, stdin) != NULL)
     {
+
         ca = strchr(recherche_brute, '\n');
         if (ca != NULL)
             *ca = '\0';
-        while((char_vidage=getchar())!= '\n' && char_vidage!=EOF); // vidage buffer
+        else{
+            while((char_vidage=getchar())!= '\n' && char_vidage!=EOF); // vidage buffer
+            recherche_brute[REQ_MAX-1] = '\0';
+        }
         Query* recherche_decoupe = decoupage(recherche_brute);
         // A completer
+        classement(c, recherche_decoupe, index);
     }
     else
     {
@@ -43,11 +48,12 @@ Query* decoupage(char recherche_brute[]){
             q->mot[j] = recherche_brute[i];
             j++;
         }
-        else if(recherche_brute[i] == ' '){
+        else if(recherche_brute[i] == ' ' || recherche_brute[i] == '\0'){
             q->mot[j] = '\0';
             j = 0;
         }
     }
+    q->mot[j] = '\0';
     return rech_dec;
 }
 
