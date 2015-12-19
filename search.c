@@ -36,6 +36,28 @@ int* classement(Correspondance *c, Query *q, Cascade_hte *i){
         rech = rech->next;
     }
 
+
+    int *classement_final = malloc(sizeof(int) * taille); // on etablit la liste des indices généraux classés
+    int i = 0, j = 0, decalage = 0, valeur_decal = 0, tempo;
+    for(i = 0; i<taille; i++){
+        for(j = 0; j<taille; j++){
+            if(decalage){
+                tempo = classement_final[j];
+                classement_final[j] = valeur_decal;
+                valeur_decal = tempo;
+            }
+            else{
+                if(classement[classement_final[j]]>classement[i])
+                    continue;
+                else
+                    valeur_decal = classement_final[j];
+                    classement_final[j] = i;
+                    decalage = 1;
+            }
+        }
+        decalage = 0;
+    }
+    return classement_final;
 }
 
 double IDF(int taille, Cascade_brche *result){ // Calcul de l'IDF (penalisation mots communs)
