@@ -14,7 +14,7 @@ void Recherche(Correspondance *c, Cascade_hte *index)
     Correspondance *docs = c;
 
     while(docs != NULL){ // calcul du nombre de docs
-        *taille ++;
+        taille ++;
         docs = docs->next;
     }
 

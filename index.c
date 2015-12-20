@@ -7,7 +7,7 @@
 Correspondance* etablir_liste_doc()
 {
     Correspondance* table = NULL;
-    int i = 1;
+    int i = 0;
     FILE *fichier_doc = fopen("liste_doc.lst", "r");
     char doc[TAILLE_MAX_DOC];
     if(fichier_doc == NULL)

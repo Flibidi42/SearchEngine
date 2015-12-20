@@ -15,7 +15,6 @@ int* classement(Correspondance *c, Query *q, Cascade_hte *i, int *taille){
     double moyenne_t = 0;
 
     while(docs != NULL){ // calcul du nombre de docs
-        *taille ++;
         moyenne_t += docs->taille;
         docs = docs->next;
     }
