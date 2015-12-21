@@ -71,7 +71,7 @@ void Affichage_resultats(int* classement, int taille, Correspondance *c){
     Correspondance *docs = c;
     int i = 0;
     for(i = 0; i < taille; i++){
-        while(docs != NULL && docs->id != i)
+        while(docs != NULL && docs->id != classement[i])
             docs = docs->next;
         if(docs == NULL){
             printf("Erreur");

@@ -39,7 +39,7 @@ int* classement(Correspondance *c, Query *q, Cascade_hte *i, int *taille){
     int *classement_final = malloc(sizeof(int) * (*taille)); // on etablit la liste des indices généraux classés
     int decalage = 0, valeur_decal = 0, tempo;
     for (k = 0; k<*taille; k++){
-        classement_final[k] = 0;
+        classement_final[k] = -1;
     }
 
     for(k = 0; k<*taille; k++){
@@ -103,7 +103,7 @@ void maj_classement(double *classement, Cascade_brche *result, int taille, Corre
         }
         Norm = 1-B+B*((p_docs->taille)/moyenne_t);
         TF = (K+1)*(parcours->nombre)/(K*Norm + (parcours->nombre));
-        classement[parcours->doc - 1] += TF*idf;
+        classement[parcours->doc] += TF*idf;
         parcours = parcours->next;
     }
 
